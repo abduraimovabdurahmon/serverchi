@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://yourdomain.uz/</loc>
+         <lastmod>2025-04-17</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.uz/docker/</loc>
+         <lastmod>2025-04-17</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.uz/linux/</loc>
+         <lastmod>2025-04-17</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.uz/postgresql/</loc>
+         <lastmod>2025-04-17</lastmod>
+    </url>
+    <url>
+         <loc>https://yourdomain.uz/tutorials/</loc>
+         <lastmod>2025-04-17</lastmod>
+    </url>
+</urlset>
