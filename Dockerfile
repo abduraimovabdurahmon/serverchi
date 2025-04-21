@@ -1,28 +1,39 @@
-# Python asosiy image tanlaymiz
-FROM python:3.9-slim
+# Caddy asosiy image tanlaymiz
+FROM caddy:2.8
 
-LABEL auhthor="Abduraxmon"
+LABEL author="Abduraxmon"
 
 # Ishchi jildni belgilaymiz
 WORKDIR /app
+
+# Python va MkDocs o'rnatish uchun zarur vositalarni qo'shamiz
+RUN apk add --no-cache python3 py3-pip git
+
+# Virtual muhit yaratamiz
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
 
 # Muhit o'zgaruvchilarini sozlaymiz
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Zarur paketlarni o'rnatamiz
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    git \
-    && rm -rf /var/lib/apt/lists/*
-
-# MkDocs va kerakli pluginlarni o'rnatamiz
+# MkDocs va kerakli pluginlarni virtual muhitda o'rnatamiz
 RUN pip install --no-cache-dir mkdocs mkdocs-material
 
-# Hujjatlarni nusxalaymiz
+# Loyiha fayllarini nusxalaymiz
 COPY . .
 
-# Portni ochamiz (agar kerak bo'lsa)
-EXPOSE 8000
+# MkDocs yordamida statik saytni yaratamiz
+RUN mkdocs build
 
-# Ishga tushirish buyrug'i
-CMD ["mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
+# Statik fayllarni Caddy uchun belgilangan papkaga ko'chiramiz
+RUN mkdir -p /srv && cp -r site/* /srv/
+
+# Caddy uchun log papkasini yaratamiz
+RUN mkdir -p /var/log/caddy
+
+# Portni ochamiz
+EXPOSE 80 443
+
+# Caddy ishga tushirish buyrug'i
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile", "--adapter", "caddyfile"]

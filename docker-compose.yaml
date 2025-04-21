@@ -1,12 +1,19 @@
-version: '3.8'
+version: "3.9"
 
 services:
-  mkdocs:
-    build: .
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "8000:8000"
+      - "80:80"
+      - "443:443" # HTTPS uchun (agar kerak bo'lsa)
     volumes:
-      - .:/app
-    environment:
-      - MKDOCS_DEV_ADDR=0.0.0.0:8000
-    command: mkdocs serve --dev-addr 0.0.0.0:8000
+      - ./Caddyfile:/etc/caddy/Caddyfile # Caddyfile ni ulaymiz
+      - caddy_data:/data # Caddy sertifikatlari uchun
+      - caddy_config:/config # Caddy konfiguratsiyasi uchun
+    restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
