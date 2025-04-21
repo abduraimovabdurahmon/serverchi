@@ -1,0 +1,39 @@
+/* Hide navigation arrows */
+.bs-sidebar .nav .nav {
+    display: none;
+}
+
+/* Hide footer navigation */
+.footer-nav {
+    display: none;
+}
+
+/* Minimal content styling */
+div.col-md-9 {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Cleaner code blocks */
+.highlight {
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    padding: 0.5em;
+}
+
+/* Remove prev/next buttons */
+.nav-footer {
+    display: none;
+}
+
+/* Minimal header */
+.navbar {
+    background-color: #1a1a1a;
+    border: none;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+}

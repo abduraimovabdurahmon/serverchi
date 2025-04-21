@@ -1,15 +1,25 @@
-site_name: Serverchi
-site_url: https://yourdomain.uz
-site_description: Docker, PostgreSQL va Linux bo'yicha to'liq qo'llanma
+site_name: Serverchi.uz
+site_url: https://serverchi.hihi.uz
+site_description: Docker, PostgreSQL va Linux bo'yicha to'plam qo'llanmalar
 site_author: Sizning Ismingiz
 
 theme:
-  name: mkdocs
-  locale: en
+  name: material
+  features:
+    - navigation.tabs
+  palette:
+    scheme: slate
+    primary: teal
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/extra.js
 
 nav:
-  - Home: index.md
+  - Bosh sahifa: index.md
   - Docker: docker/index.md
   - PostgreSQL: postgresql/index.md
   - Linux: linux/index.md
-  - Tutorials: tutorials/index.md
+  - Qo'llanmalar: tutorials/index.md
