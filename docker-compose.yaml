@@ -6,14 +6,6 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"
-      - "443:443" # HTTPS uchun (agar kerak bo'lsa)
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile # Caddyfile ni ulaymiz
-      - caddy_data:/data # Caddy sertifikatlari uchun
-      - caddy_config:/config # Caddy konfiguratsiyasi uchun
+      - "8000:8000"
+      - "443:443"
     restart: unless-stopped
-
-volumes:
-  caddy_data:
-  caddy_config:
